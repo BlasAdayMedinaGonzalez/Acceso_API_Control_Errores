@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AccessSuperHeroAPI</string>
+    <string name="launch">launch</string>
+    <string name="clear">clear</string>
+</resources>
