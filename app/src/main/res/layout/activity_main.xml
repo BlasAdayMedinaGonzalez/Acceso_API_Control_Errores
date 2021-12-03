@@ -12,7 +12,9 @@
         android:id="@+id/search_box"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter all"/>
+        android:hint="Enter word ''all'' to search all heroes \n
+                            or
+        \nEnter id to search a specific hero"/>
 
     <TextView
         android:id="@+id/url_display"

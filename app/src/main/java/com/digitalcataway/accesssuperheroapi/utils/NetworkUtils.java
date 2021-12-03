@@ -11,16 +11,30 @@ import java.util.Scanner;
 
 public class NetworkUtils {
     final static String API_BASE_URL_ALL = "https://akabab.github.io/superhero-api/api";
-    //final static String API_BASE_URL_ID = "https://akabab.github.io/superhero-api/api/id/";
+    final static String API_BASE_URL_ID = "https://akabab.github.io/superhero-api/api/id/";
 
     public static URL buildUrl(String apiSearchQuery) throws MalformedURLException {
 
-        Uri builUri = Uri.parse(API_BASE_URL_ALL).buildUpon()
+        Uri builUri = Uri.parse(getApiUrlBase(apiSearchQuery)).buildUpon()
                 .appendPath(apiSearchQuery + ".json")
                 .build();
         URL url = null;
         url = new URL(builUri.toString());
         return url;
+    }
+    public static String getApiUrlBase(String apiSearchQuery){
+        if (isNumeric((apiSearchQuery))) {
+            return API_BASE_URL_ID;
+        }
+        return API_BASE_URL_ALL;
+    }
+    public static boolean isNumeric(String apiSearchQuery){
+        try {
+            Integer.parseInt(apiSearchQuery);
+            return true;
+        } catch (NumberFormatException nfe){
+            return false;
+        }
     }
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection =  (HttpURLConnection) url.openConnection();
