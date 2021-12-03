@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 public class NetworkUtils {
     final static String API_BASE_URL_ALL = "https://akabab.github.io/superhero-api/api";
+    //final static String API_BASE_URL_ID = "https://akabab.github.io/superhero-api/api/id/";
 
     public static URL buildUrl(String apiSearchQuery) throws MalformedURLException {
 

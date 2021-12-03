@@ -67,12 +67,11 @@ public class MainActivity extends AppCompatActivity {
             urlDisplay.setText(apiURL.toString());
 
             new GithubQueryTask().execute(apiURL);
-            /*try {
-                String response = NetworkUtils.getResponseFromHttpUrl(apiURL);
-                Log.i("MainActivity", response);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }*/
+
+        }
+        if (itemId == R.id.clear){
+            urlDisplay.setText("");
+            searchResults.setText("");
         }
         return true;
     }
