@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,8 +24,16 @@ public class MainActivity extends AppCompatActivity {
     EditText searchBox;
     TextView urlDisplay;
     TextView searchResults;
+    TextView errorDisplay;
+
+    ProgressBar requestProgress;
 
     public class GithubQueryTask extends AsyncTask<URL, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            requestProgress.setVisibility(View.VISIBLE);
+        }
 
         @Override
         protected String doInBackground(URL... urls) {
@@ -40,8 +50,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
+            requestProgress.setVisibility(View.INVISIBLE);
             if (s != null && !s.equals("")){
+                showJsonData();
                 searchResults.setText(s);
+            } else {
+                showErrorMessage();
             }
         }
     }
@@ -76,6 +90,16 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    private void showJsonData() {
+        errorDisplay.setVisibility(View.INVISIBLE);
+        searchResults.setVisibility(View.VISIBLE);
+    }
+
+    private void showErrorMessage() {
+        searchResults.setVisibility(View.INVISIBLE);
+        errorDisplay.setVisibility(View.VISIBLE);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,5 +108,8 @@ public class MainActivity extends AppCompatActivity {
         searchBox = (EditText) findViewById(R.id.search_box);
         urlDisplay = (TextView) findViewById(R.id.url_display);
         searchResults = (TextView) findViewById(R.id.api_results);
+        errorDisplay = (TextView) findViewById(R.id.error_display);
+
+        requestProgress = (ProgressBar) findViewById(R.id.request_progress);
     }
 }

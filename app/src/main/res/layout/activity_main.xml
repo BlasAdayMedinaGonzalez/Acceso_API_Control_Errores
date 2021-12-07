@@ -22,17 +22,36 @@
         android:layout_height="wrap_content"
         android:textSize="22sp"
         android:layout_marginTop="8dp"
-        android:text="URL"/>
+        android:text="URL: "/>
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/api_results"
-            android:textSize="18dp"
-            android:text="Your results here"
+        android:layout_height="match_parent">
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </ScrollView>
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/api_results"
+                android:textSize="18dp"
+                android:text="Your results  will be here"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </ScrollView>
+        <TextView
+            android:id="@+id/error_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:padding="16dp"
+            android:text="@string/error_message"
+            android:visibility="invisible"/>
+
+        <ProgressBar
+            android:id="@+id/request_progress"
+            android:visibility="invisible"
+            android:layout_gravity="center"
+            android:layout_width="54dp"
+            android:layout_height="54dp" />
+    </FrameLayout>
 
 </LinearLayout>
